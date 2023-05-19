@@ -5,32 +5,14 @@
  * 1. Introduction to Java helpful.
  */
 
-import java.util.TreeMap;
-
 public abstract class Bag {
-    /*
-     * TODO: Create the following private instance variables
-     *       - a String named color
-     *       - an int named numberOfContents
-     *       - an int named capacity
-     *       - an array of Strings named contents
-     */
+
     private String color;
     private int numberOfContents;
     private int capacity;
     private String[] contents;
 
 
-
-    /*
-     * TODO: Create a constructor that takes two arguments:
-     *       - a String representing the Bag's colour
-     *       - an int representing the Bag's capacity
-     *
-     * The other attributes (private instance variables) should
-     * be empty (e.g. numberOfContents is 0 and an empty String array for
-     * its contents.)
-     */
     public Bag(String color, int capacity) {
         this.color = color;
         this.capacity = capacity;
@@ -39,14 +21,6 @@ public abstract class Bag {
     }
 
 
-
-    /*
-     * TODO: Create a variety of 'getter' functions.
-     *       These should be named:
-     *           - getColor
-     *           - getNumberOfContents
-     *           - getCapacity
-     */
     public String getColor() {return this.color;}
     public int getNumberOfContents() {return this.numberOfContents;}
     public int getCapacity() {return this.capacity;}
@@ -65,14 +39,7 @@ public abstract class Bag {
 
 
 
-    /*
-     * TODO: Create a method called addItem that takes in a String
-     *       representing an item in the Bag.
-     *       The item is added into the Bag if the number of items
-     *       in the bag is < the capacity of the Bag.
-     *       Remember to modify numberOfContents accordingly.
-     *
-     *       This method should return true if the item was added
+    /*       This method should return true if the item was added
      *       and false otherwise.
      */
     public boolean addItem(String item) {
@@ -81,21 +48,14 @@ public abstract class Bag {
         String[] newItems = new String[this.numberOfContents + 1];
         if (this.numberOfContents >= 0)
             System.arraycopy(this.contents, 0, newItems, 0, this.numberOfContents);
+        newItems[this.numberOfContents++] = item;
         this.contents = newItems;
-        this.numberOfContents++;
         return true;
     }
 
 
 
-
-
     /**
-     * TODO: Create a method called popItem that returns a String.
-     *       The string should be the last item added to this Bag
-     *       and the item should be removed from this Bag.
-     *       Remember to modify numberOfContents accordingly.
-     *
      * If there are no items in this Bag, return null.
      *
      * @return the last item in the bag. If there is no items in the bag, return null.
@@ -105,13 +65,10 @@ public abstract class Bag {
             return null;
         String[] newItems = new String[this.numberOfContents-1];
         System.arraycopy(this.contents, 0, newItems, 0, this.numberOfContents-1);
-        String toReturn = this.contents[this.numberOfContents--];
+        String toReturn = this.contents[--this.numberOfContents];
         this.contents = newItems;
         return toReturn;
     }
-
-
-
 
 
     /**
